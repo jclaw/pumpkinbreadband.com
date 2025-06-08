@@ -1,0 +1,9 @@
+<nav>
+    <ul>
+        <li {% if pageName == "home"%}    class="active"{% endif %}><a href="/">Home</a></li>
+        <li {% if pageName == "news"%}class="active"{% endif %}><a href="/news">News</a></li>
+        <li {% if pageName == "media"%}class="active"{% endif %}><a href="/media">Media</a></li>
+        <li {% if pageName == "about"%}class="active"{% endif %}><a href="/about">About</a></li>
+        <li {% if pageName == "contact"%}class="active"{% endif %}><a href="/contact">Contact</a></li>
+    </ul>
+</nav>

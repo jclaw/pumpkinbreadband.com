@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href="/img/favicon.png"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    {% capture page_title %}
+      {% if title %}
+        {{ title }} | Pumpkin Bread: The Band
+      {% else %}
+        Pumpkin Bread: The Band | Modern Folk Music | Boston, MA
+      {% endif %}
+    {% endcapture %}
+    {% capture img %}/img/PumpkinBread-1983a-web.jpg{% endcapture %}
+    <title>{{ page_title|strip }}</title>
+    <meta property="og:title" content="{{ page_title|strip }}">
+    <meta name="description" content="{{description|strip}}">
+    <meta property="og:description" content="{{description|strip}}">
+    <meta property="og:image" content="{{img}}">
+    <meta property="og:site_name" content="pumpkinbread">
+    <meta property="og:type" content="website">
+    <meta name="keywords" content="pumpkin bread band website, pumpkin bread band">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page_title|strip }}">
+    <meta name="twitter:description" content="{{description|strip}}">
+    <meta name="twitter:image" content="{{img}}">
+    {% basecss %}{% include "css/_reset.css" %}{% endbasecss %}
+    {% basecss %}{% include "css/site.css" %}{% endbasecss %}
+    <link rel="stylesheet" href="{% getBundleFileUrl "basecss" %}">
+    <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+  </head>
+  <body>
+    <header>
+      {% include "_includes/navbar.liquid" %}
+    </header>
+    {{ content }}
+    <script src="{% getBundleFileUrl "js" %}"></script>
+  </body>
+</html>
