@@ -24,10 +24,13 @@
     <meta name="twitter:title" content="{{ page_title|strip }}">
     <meta name="twitter:description" content="{{description|strip}}">
     <meta name="twitter:image" content="{{img}}">
-    {% basecss %}{% include "css/_reset.css" %}{% endbasecss %}
-    {% basecss %}{% include "css/site.css" %}{% endbasecss %}
-    <link rel="stylesheet" href="{% getBundleFileUrl "basecss" %}">
-    <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+
+    {% css "base" %}
+      {% include "css/_reset.css" %}
+      {% include "css/site.css" %}
+    {% endcss %}
+    <link rel="stylesheet" href="{% getBundleFileUrl "css", "base" %}">
+    <link rel="stylesheet" href="{% getBundleFileUrl "css", "page" %}">
   </head>
   <body>
     <header>

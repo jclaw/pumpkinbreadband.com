@@ -6,7 +6,12 @@ import pluginYouTube   from 'eleventy-plugin-youtube-embed';
 import embedVimeo      from 'eleventy-plugin-vimeo-embed';
 
 export default function (eleventyConfig) {
-  eleventyConfig.addPlugin(pluginBundle, { bundles: ['basecss'] });
+  eleventyConfig.addPlugin(pluginBundle, {
+    bundles: [
+      { name: "base", type: "css" },
+      { name: "page", type: "css" }
+    ]
+  });
   eleventyConfig.addPlugin(pluginImages);
   eleventyConfig.addPlugin(embedVimeo);
   eleventyConfig.addPlugin(pluginYouTube, {
