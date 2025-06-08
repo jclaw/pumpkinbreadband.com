@@ -26,8 +26,10 @@
     <meta name="twitter:image" content="{{img}}">
 
     {% css "base" %}
-      {% include "css/_reset.css" %}
-      {% include "css/site.css" %}
+      {% include "css/base/_reset.css" %}
+      {% include "css/base/utils.css" %}
+      {% include "css/base/site.css" %}
+      {% include "css/base/components.css" %}
     {% endcss %}
     <link rel="stylesheet" href="{% getBundleFileUrl "css", "base" %}">
     <link rel="stylesheet" href="{% getBundleFileUrl "css", "page" %}">
