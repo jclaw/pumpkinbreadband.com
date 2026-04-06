@@ -31,14 +31,12 @@ function validate(form: FormState): FormErrors {
 }
 
 export default function ContactForm() {
-  const [form, setForm] = useState<FormState>({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
+  const [form, setForm] = useState<FormState>({ name: '', email: '', subject: '', message: '' })
+  const [honeypot, setHoneypot] = useState('')
   const [errors, setErrors] = useState<FormErrors>({})
+  const [sending, setSending] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [serverError, setServerError] = useState<string | null>(null)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = e.target
@@ -48,14 +46,35 @@ export default function ContactForm() {
     }
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const errs = validate(form)
     if (Object.keys(errs).length > 0) {
       setErrors(errs)
       return
     }
-    setSubmitted(true)
+
+    setSending(true)
+    setServerError(null)
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, _honeypot: honeypot }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        setServerError(data.error ?? 'Something went wrong. Please try again.')
+      } else {
+        setSubmitted(true)
+      }
+    } catch {
+      setServerError('Network error. Please check your connection and try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   if (submitted) {
@@ -67,7 +86,23 @@ export default function ContactForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate aria-label="Contact form">
+    <>
+      <p className={styles.intro}>Shoot us a message using the form below!</p>
+      <form className={styles.form} onSubmit={handleSubmit} noValidate aria-label="Contact form">
+      {/* Honeypot — hidden from real users, bots fill it in */}
+      <div className={styles.honeypot} aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          name="website"
+          type="text"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className={styles.row}>
         <div className={styles.field}>
           <label htmlFor="contact-name" className="visually-hidden">Name</label>
@@ -133,7 +168,14 @@ export default function ContactForm() {
         {errors.message && <span id="message-error" className={styles.error} role="alert">{errors.message}</span>}
       </div>
 
-      <button type="submit" className={styles.submit}>Send</button>
+      {serverError && (
+        <p className={styles.serverError} role="alert">{serverError}</p>
+      )}
+
+      <button type="submit" className={styles.submit} disabled={sending}>
+        {sending ? 'Sending…' : 'Send'}
+      </button>
     </form>
+    </>
   )
 }

@@ -10,7 +10,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className={styles.page}>
-      <p className={styles.intro}>Shoot us a message using the form below!</p>
       <ContactForm />
     </div>
   )
