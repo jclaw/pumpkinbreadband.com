@@ -1,0 +1,73 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.bg {
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding-top: 2rem;
+}
+
+.skipLink {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.centerContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem var(--page-margin);
+}
+
+.logoText {
+  max-width: min(647px, 85vw);
+  height: auto;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.4));
+}
+
+.watchBtn {
+  padding: 0.75rem 2.25rem;
+  background-color: var(--color-brand);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.watchBtn:hover {
+  background-color: var(--color-brand-dark);
+  transform: translateY(-1px);
+}
+
+.watchBtn:active {
+  transform: translateY(0);
+}

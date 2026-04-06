@@ -1,0 +1,16 @@
+.page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem var(--page-margin) 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.intro {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  margin: 0;
+  text-align: center;
+}
