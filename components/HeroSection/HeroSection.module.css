@@ -11,6 +11,13 @@
   z-index: 0;
 }
 
+/* md → 768px */
+@media (max-width: 768px) {
+  .bg {
+    object-position: calc(50% + 130px) center;
+  }
+}
+
 .overlay {
   position: absolute;
   inset: 0;
@@ -39,9 +46,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2rem;
-  padding: 2rem var(--page-margin);
+  padding: 6vh var(--page-margin) 0;
 }
 
 .logoText {

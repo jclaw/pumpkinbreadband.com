@@ -16,8 +16,9 @@ export default function HeroSection() {
         alt="Pumpkin Bread band performing outdoors in autumn"
         fill
         priority
+        quality={85}
         className={styles.bg}
-        sizes="100vw"
+        sizes="(max-width: 768px) 220vw, 100vw"
       />
       <div className={styles.overlay} />
 
