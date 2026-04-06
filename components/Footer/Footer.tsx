@@ -13,7 +13,7 @@ export default function Footer() {
 
   return (
     <footer>
-      <MailingListSignup />
+      {/* <MailingListSignup /> */}
       <div className={styles.bottom}>
         <div className={styles.inner}>
           <nav className={styles.social} aria-label="Social media links">
