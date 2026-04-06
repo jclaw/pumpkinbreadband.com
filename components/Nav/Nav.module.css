@@ -1,0 +1,58 @@
+.nav {
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+}
+
+.list li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.03em;
+  transition: color 0.15s;
+}
+
+/* Dark variant (used on standard pages) */
+.dark .list li a {
+  color: var(--color-text-secondary);
+}
+
+.dark .list li.active a,
+.dark .list li a:hover {
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+.dark .list li.active a {
+  font-weight: 600;
+}
+
+/* Light variant (used on hero/home page) */
+.light .list li a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.light .list li.active a,
+.light .list li a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.light .list li.active a {
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .list li a {
+    padding: 0.4rem 0.6rem;
+    font-size: var(--font-size-xs);
+  }
+}
